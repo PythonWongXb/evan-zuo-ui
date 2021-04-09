@@ -1,5 +1,14 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-04-09 22:43:29
+ * @LastEditTime: 2021-04-09 23:37:37
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /evan_you_demo_1/src/components/HelloWorld.vue
+-->
 <template>
   <div class="hello">
+
     <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
@@ -34,7 +43,10 @@
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String
+    msg: {
+      type: String,
+      default: 'evan_me',
+    }
   }
 }
 </script>

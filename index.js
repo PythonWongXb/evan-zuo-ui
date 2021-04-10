@@ -1,16 +1,16 @@
 /*
  * @Author: your name
  * @Date: 2021-04-09 22:46:45
- * @LastEditTime: 2021-04-09 23:01:06
+ * @LastEditTime: 2021-04-10 19:16:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/index.js
  */
 
-import HelloWorld from './src/components/HelloWorld'
+import MyTable from './src/components/table'
 
 const ModuleObj = {
-  HelloWorld,
+  MyTable,
 }
 
 let MyModule = {}
@@ -23,5 +23,5 @@ MyModule.install = (_Vue) => {
 export default MyModule
 
 export {
-  HelloWorld
+  MyTable
 }

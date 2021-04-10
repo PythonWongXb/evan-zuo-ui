@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-10 18:55:41
+ * @LastEditTime: 2021-04-10 23:46:37
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
@@ -21,7 +21,10 @@
         width="50"
       >
         <template v-slot:content>
-          <el-checkbox v-model="rowData.select"></el-checkbox>
+          <el-checkbox
+            v-model="rowData.select"
+            @change="singleTableRowChangeSelect"
+          ></el-checkbox>
         </template>
       </Cell>
       <Cell
@@ -71,24 +74,55 @@ export default {
 
     index: {
       type: Number
-    }
+    },
+    isSelectAll: {
+      type: Boolean
+    },
   },
 
   watch: {
-    'rowData.isExpand': {
-      handler() {
-        this.$nextTick(() => {
+    'rowData.select': {
+      async handler(value) {
+        // 主要是为了监听 点击全选的时候一种情况
+        if (value) {
+          // 有一个要变成 选中状态
+          // 发起原因是全选
+          // 我就要对所有的进行全选，不止这一个了。
+          if (this.isSelectAll) this.$emit('selectAllSubTable')
+        } else {
+          await this.$nextTick()
           if (this.loadingInstance) {
             this.loadingInstance.close()
             this.loadingInstance = null
           }
-        })
+          this.singleTableRowChangeSelect(value)
+        }
+      },
+      deep: false,
+    },
+
+    'rowData.isExpand': {
+      async handler() {
+        await this.$nextTick()
+        if (this.loadingInstance) {
+          this.loadingInstance.close()
+          this.loadingInstance = null
+        }
       },
       deep: false,
     }
   },
 
   methods: {
+    singleTableRowChangeSelect(value) {
+      // 手动选择的情况
+      if (value && !this.rowData.isLoaded) {
+        console.log('loading')
+        this.loadingInstance = Loading.service({ target: document.querySelectorAll('.sub-row-arrow-icon')[this.index] })
+      }
+      this.$emit('singleTableRowChangeSelect', value)
+    },
+
     clickSubRowArrow(e) {
       if (this.loadingInstance) {
         console.log('loading...')

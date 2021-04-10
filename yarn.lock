@@ -3564,6 +3564,25 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
+evan_you_demo_1_demo_pythonista_1@0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/evan_you_demo_1_demo_pythonista_1/-/evan_you_demo_1_demo_pythonista_1-0.2.1.tgz#8974b63dc5e4e97769336c473d51759544447407"
+  integrity sha512-5xss2jWWlhPN7lxAzGFVJgJUwS1+2J4607pQNrJBlXSqI2A4t6Ov2vxmJRUcmLgKyn06WcZFcsE5kjuRNHoVuA==
+  dependencies:
+    core-js "^3.6.5"
+    element-ui "^2.15.1"
+    vue "^2.6.11"
+
+evan_you_demo_1_demo_pythonista_1@0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/evan_you_demo_1_demo_pythonista_1/-/evan_you_demo_1_demo_pythonista_1-0.2.3.tgz#1a8b6129a39581d371fad32da0f4a6e56736fa25"
+  integrity sha512-++em4VP+XVyn6YrSnmI/n+V14UgqhChRPpSeCO+b7V7SMnW0VzY6NO5knbtJBVVRRXq77vvvUnPlZ2FrZjCKUQ==
+  dependencies:
+    core-js "^3.6.5"
+    element-ui "^2.15.1"
+    evan_you_demo_1_demo_pythonista_1 "0.2.1"
+    vue "^2.6.11"
+
 event-pubsub@4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/event-pubsub/-/event-pubsub-4.3.0.tgz#f68d816bc29f1ec02c539dc58c8dd40ce72cb36e"

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-10 19:04:37
+ * @LastEditTime: 2021-04-10 21:08:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
@@ -10,7 +10,7 @@
   <div class="th">
     <Cell width="50">
       <template v-slot:content>
-        <el-checkbox></el-checkbox>
+        <el-checkbox :value="isSelectAll" @change="selectAllChange"></el-checkbox>
       </template>
     </Cell>
     <Cell
@@ -35,6 +35,10 @@ export default {
       columns: {
         type: Array
       },
+
+      isSelectAll: {
+        type: Boolean
+      }
     },
 
 
@@ -43,8 +47,11 @@ export default {
       },
 
     methods: {
+      selectAllChange(value) {
+        this.$emit('selectAllChange', value)
+      }
+    },
 
-      },
     // render() {
     //   let cellList
     //   cellList = this.columns.map(item => <Cell cellData={ item.name || item.prop }></Cell>)

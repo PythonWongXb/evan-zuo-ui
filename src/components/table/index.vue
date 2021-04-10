@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-10 16:57:14
+ * @LastEditTime: 2021-04-10 17:44:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
@@ -19,8 +19,19 @@
       @clickSubRowArrow="clickSubRowArrow(item, $event)"
     >
       <template v-slot:expand-table>
-        <div> {{ item.children }} </div>
-        <el-table></el-table>
+        <el-table
+        :data="item.children"
+        >
+          <el-table-column
+            type="selection"
+            width="55">
+          </el-table-column>
+            <el-table-column
+              prop="id"
+              label="id了您嘞"
+            >
+            </el-table-column>
+        </el-table>
       </template>
     </Row>
     </div>
@@ -28,7 +39,7 @@
 
 <script>
 
-import { Table } from 'element-ui';
+import { Table, TableColumn } from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 import Row from './../row'
@@ -38,6 +49,7 @@ import Th from './../th'
       Row,
       Th,
       [Table.name]: Table,
+      [TableColumn.name]: TableColumn,
     },
 
     data() {

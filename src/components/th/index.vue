@@ -1,11 +1,18 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-10 14:36:18
+ * @LastEditTime: 2021-04-10 15:06:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
 -->
+<template>
+  <div class="th">
+    <Cell v-for="(item, index) in columns"
+    :key="index"
+    :cellData="item.name || item.prop"></Cell>
+  </div>
+</template>
 
 <script>
 import Cell from './../cell'
@@ -21,21 +28,21 @@ import Cell from './../cell'
       },
     },
 
-    render() {
-      let cellList
-      cellList = this.columns.map(item => <Cell cellData={ item.name || item.prop }></Cell>)
-      return <div class="th">
-      { cellList }
-      </div>
-    },
 
     watch: {
 
-    },
+      },
 
     methods: {
 
-    },
+      },
+    // render() {
+    //   let cellList
+    //   cellList = this.columns.map(item => <Cell cellData={ item.name || item.prop }></Cell>)
+    //   return <div class="th">
+    //   { cellList }
+    //   </div>
+    // },
   }
 </script>
 

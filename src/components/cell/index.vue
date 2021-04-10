@@ -1,18 +1,17 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-10 14:26:25
+ * @LastEditTime: 2021-04-10 15:07:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
 -->
+<template>
+  <div class="cell" @click="clickCell"> {{ this.cellData }} </div>
+</template>
 
 <script>
   export default {
-    render() {
-      return <div onClick={this.clickCell} class="cell">{ this.cellData }</div>
-    },
-
     props: {
       cellData: {
         type: [Number, String, Object, Array]
@@ -24,6 +23,10 @@
         this.$emit('clickCell', this.cellData, e)
       }
     },
+
+    // render() {
+    //   return <div onClick={this.clickCell} class="cell">{ this.cellData }</div>
+    // },
   }
 </script>
 

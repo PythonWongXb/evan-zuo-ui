@@ -1,31 +1,26 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-10 14:35:43
+ * @LastEditTime: 2021-04-10 15:08:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
 -->
 
+<template>
+  <div class="container">
+    <Th :columns="this.columnsList"></Th>
+    <Row :rowData="this.tableData[0]" :columns="this.columnsList"></Row>
+  </div>
+</template>
+
 <script>
-import Cell from './../cell'
 import Row from './../row'
 import Th from './../th'
   export default {
     components: {
-      Cell,
       Row,
       Th,
-    },
-
-    render() {
-      const rowList = this.tableData.map(item => {
-          return <Row rowData={item} columns={this.columnsList}></Row>
-      })
-      return <div class="table">
-            <Th columns={this.columnsList}></Th>
-            {rowList}
-      </div>
     },
 
     data() {
@@ -57,11 +52,6 @@ import Th from './../th'
             name3: '4',
           },
         ],
-        columns: [
-          {
-            prop: 'prop'
-          }
-        ]
       }
     },
 
@@ -72,6 +62,15 @@ import Th from './../th'
     methods: {
 
     },
+    // render() {
+    //   const rowList = this.tableData.map(item => {
+    //       return <Row rowData={item} columns={this.columnsList}></Row>
+    //   })
+    //   return <div class="table">
+    //         <Th columns={this.columnsList}></Th>
+    //         {rowList}
+    //   </div>
+    // },
   }
 </script>
 

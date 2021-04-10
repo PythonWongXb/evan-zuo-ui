@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-10 15:08:19
+ * @LastEditTime: 2021-04-10 16:57:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
@@ -9,18 +9,35 @@
 
 <template>
   <div class="container">
-    <Th :columns="this.columnsList"></Th>
-    <Row :rowData="this.tableData[0]" :columns="this.columnsList"></Row>
-  </div>
+    <Th :columns="columnsList"></Th>
+    <Row
+      v-for="(item, index) in tableData"
+      :key="index"
+      :rowData="item"
+      :columns="columnsList"
+      :index="index"
+      @clickSubRowArrow="clickSubRowArrow(item, $event)"
+    >
+      <template v-slot:expand-table>
+        <div> {{ item.children }} </div>
+        <el-table></el-table>
+      </template>
+    </Row>
+    </div>
 </template>
 
 <script>
+
+import { Table } from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
 import Row from './../row'
 import Th from './../th'
   export default {
     components: {
       Row,
       Th,
+      [Table.name]: Table,
     },
 
     data() {
@@ -45,11 +62,19 @@ import Th from './../th'
             name1: '1',
             name2: 'prop_name',
             name3: '3',
+            isExpand: false,
+            select: false,
+            children: [],
+            isLoaded: false,
           },
           {
             name1: '2',
             name2: 'prop_name',
             name3: '4',
+            isExpand: false,
+            select: false,
+            children: [],
+            isLoaded: false,
           },
         ],
       }
@@ -60,7 +85,23 @@ import Th from './../th'
     },
 
     methods: {
-
+      clickSubRowArrow(item, isExpand) {
+        console.log(item, isExpand)
+        if (isExpand) {
+          item.isExpand = false
+          return
+        } else {
+          if (item.isLoaded) {
+            item.isExpand = true
+            return
+          }
+          setTimeout(() => {
+            item.isExpand = true
+            item.isLoaded = true
+            item.children.push({id: 1})
+          }, 1000)
+        }
+      }
     },
     // render() {
     //   const rowList = this.tableData.map(item => {

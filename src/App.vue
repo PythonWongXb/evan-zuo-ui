@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-09 22:43:29
- * @LastEditTime: 2021-04-11 20:46:50
+ * @LastEditTime: 2021-04-11 20:53:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/App.vue
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import MyTable from '@/components/table'
+import MyTable from '@/components/evan-table'
 
 
 export default {

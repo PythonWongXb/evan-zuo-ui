@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-11 19:54:16
+ * @LastEditTime: 2021-04-11 20:33:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
@@ -49,14 +49,10 @@
         </div>
       </template>
       <template v-slot:operations>
-        <div class="operations">
-          <div @click="editRow(index, item)">edit </div>
-          <div @click="editRow(index, item)">edit </div>
-          <div @click="editRow(index, item)">edit </div>
-          <div @click="editRow(index, item)">edit </div>
+        <div class="evan-table-operations">
+            <slot name="evan-table-operations" :index="index" :item="item"></slot>
         </div>
       </template>
-
     </Row>
     </div>
 </template>
@@ -80,47 +76,33 @@ import Th from './../th'
       [TableColumn.name]: TableColumn,
     },
 
+    props: {
+      columnsList: {
+        type: Array
+      },
+
+      data: {
+        type: Array
+      }
+    },
+
+    created() {
+      this.tableData = this.data.map(item => {
+        return {
+          ...item,
+            isExpand: false,
+            select: false,
+            children: [],
+            isLoaded: false,
+        }
+      })
+    },
+
     data() {
       return {
         loadingInstance: null,
         isSelectAll: false,
-        columnsList: [
-          {
-            name: '1',
-            prop: 'name1'
-          },
-          {
-            name: '2',
-            prop: 'name2'
-          },
-          {
-            name: '3',
-            prop: 'name3'
-          },
-        ],
-
-        tableData: [
-          {
-            id: 1,
-            name1: '1',
-            name2: 'prop_name',
-            name3: '3',
-            isExpand: false,
-            select: false,
-            children: [],
-            isLoaded: false,
-          },
-          {
-            id: 2,
-            name1: '2',
-            name2: 'prop_name',
-            name3: '4',
-            isExpand: false,
-            select: false,
-            children: [],
-            isLoaded: false,
-          },
-        ],
+        tableData: [],
       }
     },
 
@@ -304,7 +286,10 @@ import Th from './../th'
     }
 }
 
-.operations {
+</style>
+
+<style lang="less" scoped>
+::v-deep .evan-table-operations {
   display: flex;
   flex-wrap: wrap;
   width: 200px;
@@ -314,9 +299,6 @@ import Th from './../th'
   }
 }
 
-</style>
-
-<style lang="less" scoped>
 ::v-deep .table-header-sub-table {
   th {
     background: #f7f7f7;

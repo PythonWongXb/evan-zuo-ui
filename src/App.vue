@@ -1,14 +1,14 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-09 22:43:29
- * @LastEditTime: 2021-04-11 20:53:39
+ * @LastEditTime: 2021-04-11 20:58:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/App.vue
 -->
 <template>
   <div id="app">
-    <my-table
+    <evan-table
       ref="evan-table"
       :data="tableData"
       :columnsList="columnsList"
@@ -19,18 +19,18 @@
           <div @click="editRow(props.index, props.item)">edit </div>
           <div @click="editRow(props.index, props.item)">edit </div>
       </template>
-    </my-table>
+    </evan-table>
   </div>
 </template>
 
 <script>
-import MyTable from '@/components/evan-table'
+import { EvanTable } from 'evan-zuo-ui'
 
 
 export default {
   name: 'App',
   components: {
-    MyTable,
+    EvanTable,
   },
   data() {
     return {

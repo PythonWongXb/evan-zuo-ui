@@ -11,6 +11,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "element-ui": "^2.15.1",
+    "evan-zuo-ui": "0.0.3",
     "evan_you_demo_1_demo_pythonista_1": "0.2.3",
     "vue": "^2.6.11"
   },

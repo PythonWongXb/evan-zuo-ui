@@ -3564,6 +3564,16 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
+evan-zuo-ui@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/evan-zuo-ui/-/evan-zuo-ui-0.0.3.tgz#b0497e5651daca06706e639d164ddd613a35f2ff"
+  integrity sha512-HR5oZJR3VIzpzb5FooxR+M8Zu9EK6pq5107xHLCrzuoeSo10bruBbXhccjqwINepvlTpTq+Gh1HrpbsOQseMOA==
+  dependencies:
+    core-js "^3.6.5"
+    element-ui "^2.15.1"
+    evan_you_demo_1_demo_pythonista_1 "0.2.3"
+    vue "^2.6.11"
+
 evan_you_demo_1_demo_pythonista_1@0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/evan_you_demo_1_demo_pythonista_1/-/evan_you_demo_1_demo_pythonista_1-0.2.1.tgz#8974b63dc5e4e97769336c473d51759544447407"

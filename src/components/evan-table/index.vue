@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-11 20:43:14
+ * @LastEditTime: 2021-04-11 20:46:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
@@ -69,6 +69,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import Row from './components/row'
 import Th from './components/th'
   export default {
+    name: 'evan-table',
     components: {
       Row,
       Th,

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-09 22:43:29
- * @LastEditTime: 2021-04-11 20:30:45
+ * @LastEditTime: 2021-04-11 20:46:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/App.vue
@@ -9,7 +9,7 @@
 <template>
   <div id="app">
     <my-table
-      ref="evanTable"
+      ref="evan-table"
       :data="tableData"
       :columnsList="columnsList"
     >
@@ -71,7 +71,7 @@ export default {
         if (item.select) {
           data = item.children
         } else {
-          data = this.$refs.evanTable.$refs.subTable[index].selection
+          data = this.$refs['evan-table'].$refs.subTable[index].selection
         }
         console.log(index, data)
       },

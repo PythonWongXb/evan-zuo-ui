@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-11 11:10:21
+ * @LastEditTime: 2021-04-11 13:17:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
@@ -35,6 +35,7 @@
           :cellData="rowData[item.prop]"
         ></Cell>
       </div>
+      <slot name="operations"></slot>
     </div>
     <div v-show="rowData.isExpand">
       <slot name="expand-table"></slot>
@@ -162,6 +163,7 @@ export default {
 .row {
   position: relative;
   display: flex;
+  align-items: center;
   border-bottom: 1px solid #eeeeee;
 }
 
@@ -180,5 +182,7 @@ export default {
   flex: 1;
   display: flex;
   margin-left: 40px;
+  // margin-right: 200px;
+  // overflow: scroll;
 }
 </style>

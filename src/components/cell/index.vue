@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-11 10:55:55
+ * @LastEditTime: 2021-04-11 12:57:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
@@ -47,6 +47,7 @@
     align-items: center;
     // justify-content: center;
     height: 42px;
+    min-width: 80px;
 }
 
 .cell-center {
@@ -55,5 +56,7 @@
     align-items: center;
     justify-content: center;
     height: 42px;
+    flex-shrink: 0;
+    min-width: 50px;
 }
 </style>

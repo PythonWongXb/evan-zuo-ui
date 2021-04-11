@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-11 11:10:13
+ * @LastEditTime: 2021-04-11 12:53:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
@@ -20,6 +20,7 @@
         :cellData="item.name || item.prop"
       ></Cell>
     </div>
+    <div class="operations">operations</div>
   </div>
 </template>
 
@@ -76,11 +77,20 @@ export default {
     border-bottom: 1px solid #EEEEEE;
     background-color: #f7f7f7;
     height: 42px;
+    position: relative;
 }
 
 .sub-th-cells-container {
   flex: 1;
   display: flex;
   margin-left: 40px;
+  margin-right: 200px;
+}
+
+.operations {
+  position: absolute;
+  right: 0;
+  width: 200px;
+  height: 42px;
 }
 </style>

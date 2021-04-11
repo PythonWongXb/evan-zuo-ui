@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-11 11:35:41
+ * @LastEditTime: 2021-04-11 13:18:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
@@ -48,6 +48,15 @@
           </el-table>
         </div>
       </template>
+      <template v-slot:operations>
+        <div class="operations">
+          <div @click="editRow(index, item)">edit </div>
+          <div @click="editRow(index, item)">edit </div>
+          <div @click="editRow(index, item)">edit </div>
+          <div @click="editRow(index, item)">edit </div>
+        </div>
+      </template>
+
     </Row>
     </div>
 </template>
@@ -120,16 +129,22 @@ import Th from './../th'
     },
 
     methods: {
+      editRow(index, item) {
+        let data
+        if (item.select) {
+          data = item.children
+        } else {
+          data = this.$refs.subTable[index].selection
+        }
+        console.log(index, data)
+      },
+
       async subTableSelectChange(index, item, event) {
         console.log(index, event)
         const isSubTableSelectAll = this.$refs.subTable[index].selection.length === item.children.length
         item.select = isSubTableSelectAll
         await this.$nextTick()
         this.isSelectAll = _checkSelectAll(this.tableData)
-
-        // function _checkSelectAll(array) {
-        //   return array.every(item => item.select)
-        // }
       },
 
       async selectAllSubTable() {
@@ -207,10 +222,6 @@ import Th from './../th'
           this.clearCurrentSubTableRowAllSelect(subTableIndex)
         }
         this.isSelectAll = _checkSelectAll(this.tableData)
-
-        // function _checkSelectAll(array) {
-        //   return array.every(item => item.select)
-        // }
       },
 
       async selectCurrentAllSubTableRow(subTableIndex) {
@@ -289,6 +300,16 @@ import Th from './../th'
         background-color: #f7f7f7;
         height: 42px;
     }
+}
+
+.operations {
+  display: flex;
+  flex-wrap: wrap;
+  width: 200px;
+
+  & > div {
+    width: 100px;
+  }
 }
 
 </style>

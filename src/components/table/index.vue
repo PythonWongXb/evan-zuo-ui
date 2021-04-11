@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-11 20:33:20
+ * @LastEditTime: 2021-04-11 20:43:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
@@ -66,8 +66,8 @@ import { Table, TableColumn, Loading } from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 
-import Row from './../row'
-import Th from './../th'
+import Row from './components/row'
+import Th from './components/th'
   export default {
     components: {
       Row,

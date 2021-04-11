@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-11 13:18:58
+ * @LastEditTime: 2021-04-11 19:54:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
@@ -193,7 +193,10 @@ import Th from './../th'
                 parentId: 1,
                 children: [
                   {
-                    id: 1
+                    id: 234
+                  },
+                  {
+                    id: 2341
                   }
                 ]
               },
@@ -213,12 +216,12 @@ import Th from './../th'
       async singleTableRowChangeSelect(item, subTableIndex, isSingleRowSelect) {
         console.log(item, isSingleRowSelect)
         if (isSingleRowSelect) {
-          // 选中
+          // 想选中
           await this.clickSubRowArrow(item, false)
           await this.$nextTick()
           await this.selectCurrentAllSubTableRow(subTableIndex)
         } else {
-          // 清除
+          // 要清除
           this.clearCurrentSubTableRowAllSelect(subTableIndex)
         }
         this.isSelectAll = _checkSelectAll(this.tableData)
@@ -230,7 +233,6 @@ import Th from './../th'
       },
 
       clearCurrentSubTableRowAllSelect(subTableIndex) {
-        console.log(2)
         this.$refs.subTable[subTableIndex].clearSelection()
       },
 

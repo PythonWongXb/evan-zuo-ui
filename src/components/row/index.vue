@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-11 13:17:58
+ * @LastEditTime: 2021-04-11 19:52:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
@@ -99,7 +99,11 @@ export default {
             this.loadingInstance.close()
             this.loadingInstance = null
           }
-          this.singleTableRowChangeSelect(value)
+          if (this.isSelectAll) {
+            if (!this.$parent.$refs.subTable[this.index].selection.length) this.singleTableRowChangeSelect(value)
+          } else {
+            this.singleTableRowChangeSelect(value)
+          }
         }
       },
       deep: false,

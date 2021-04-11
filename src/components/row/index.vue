@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-10 23:46:37
+ * @LastEditTime: 2021-04-11 11:10:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
@@ -18,6 +18,7 @@
       </div>
       <Cell
         :cellData="rowData.select"
+        center
         width="50"
       >
         <template v-slot:content>
@@ -27,11 +28,13 @@
           ></el-checkbox>
         </template>
       </Cell>
-      <Cell
-        v-for="(item, index) in columns"
-        :key="index"
-        :cellData="rowData[item.prop]"
-      ></Cell>
+      <div class="row-cells-container">
+        <Cell
+          v-for="(item, index) in columns"
+          :key="index"
+          :cellData="rowData[item.prop]"
+        ></Cell>
+      </div>
     </div>
     <div v-show="rowData.isExpand">
       <slot name="expand-table"></slot>
@@ -146,10 +149,14 @@ export default {
 
 .sub-row-arrow {
   position: absolute;
-  left: 20px;
+  left: 50px;
   height: 100%;
   line-height: 42px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
 }
 
 .row {
@@ -160,9 +167,18 @@ export default {
 
 .sub-row-arrow-icon {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .transition {
   transition: all .3s ease;
+}
+
+.row-cells-container {
+  flex: 1;
+  display: flex;
+  margin-left: 40px;
 }
 </style>

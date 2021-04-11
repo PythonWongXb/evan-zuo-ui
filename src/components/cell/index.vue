@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-10 19:00:48
+ * @LastEditTime: 2021-04-11 10:55:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
@@ -17,6 +17,10 @@
 
       width: {
         type: [String, Number]
+      },
+
+      center: {
+        type: Boolean
       }
     },
 
@@ -28,8 +32,9 @@
 
     render() {
       const style = this.width ? `max-width: ${this.width}px`: ''
+      const className = this.center ? 'cell-center' : 'cell'
       const content = this.$scopedSlots.content ? this.$scopedSlots.content() : String(this.cellData)
-      return <div onClick={this.clickCell} class="cell" style={style}>{ content }</div>
+      return <div onClick={this.clickCell} class={className} style={style}>{ content }</div>
     },
   }
 </script>
@@ -41,6 +46,14 @@
     display: flex;
     align-items: center;
     // justify-content: center;
+    height: 42px;
+}
+
+.cell-center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 42px;
 }
 </style>

@@ -1,23 +1,25 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-10 21:08:45
+ * @LastEditTime: 2021-04-11 11:10:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
 -->
 <template>
   <div class="th">
-    <Cell width="50">
+    <Cell width="50" center>
       <template v-slot:content>
         <el-checkbox :value="isSelectAll" @change="selectAllChange"></el-checkbox>
       </template>
     </Cell>
-    <Cell
-      v-for="(item, index) in columns"
-      :key="index"
-      :cellData="item.name || item.prop"
-    ></Cell>
+    <div class="sub-th-cells-container">
+      <Cell
+        v-for="(item, index) in columns"
+        :key="index"
+        :cellData="item.name || item.prop"
+      ></Cell>
+    </div>
   </div>
 </template>
 
@@ -74,5 +76,11 @@ export default {
     border-bottom: 1px solid #EEEEEE;
     background-color: #f7f7f7;
     height: 42px;
+}
+
+.sub-th-cells-container {
+  flex: 1;
+  display: flex;
+  margin-left: 40px;
 }
 </style>

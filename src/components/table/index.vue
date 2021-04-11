@@ -1,14 +1,14 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-10 12:31:53
- * @LastEditTime: 2021-04-10 23:39:48
+ * @LastEditTime: 2021-04-11 11:35:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /evan_you_demo_1/src/components/table/index.vue
 -->
 
 <template>
-  <div class="container">
+  <div class="evan-table-container">
     <Th
       :columns="columnsList"
       :isSelectAll="isSelectAll"
@@ -26,30 +26,40 @@
       @selectAllSubTable="selectAllSubTable"
     >
       <template v-slot:expand-table>
-        <el-table
-        ref='subTable'
-        :data="item.children"
-        @select="subTableSelectChange(index, item, $event)"
-        >
-          <el-table-column
-            type="selection"
-            width="55">
-          </el-table-column>
+        <div class="sub-table-container">
+          <div class="block"></div>
+          <el-table
+          class="sub-table"
+          ref='subTable'
+          :data="item.children"
+          :stripe="true"
+          header-row-class-name="table-header-sub-table"
+          @select="subTableSelectChange(index, item, $event)"
+          >
             <el-table-column
-              prop="id"
-              label="id了您嘞"
-            >
+              type="selection"
+              width="55">
             </el-table-column>
-        </el-table>
+              <el-table-column
+                prop="id"
+                label="id了您嘞"
+              >
+              </el-table-column>
+          </el-table>
+        </div>
       </template>
     </Row>
     </div>
 </template>
 
 <script>
+function _checkSelectAll(array) {
+  return array.every(item => item.select)
+}
 
-import { Table, TableColumn } from 'element-ui';
+import { Table, TableColumn, Loading } from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+
 
 import Row from './../row'
 import Th from './../th'
@@ -63,6 +73,7 @@ import Th from './../th'
 
     data() {
       return {
+        loadingInstance: null,
         isSelectAll: false,
         columnsList: [
           {
@@ -109,14 +120,16 @@ import Th from './../th'
     },
 
     methods: {
-      subTableSelectChange(index, item, event) {
+      async subTableSelectChange(index, item, event) {
         console.log(index, event)
         const isSubTableSelectAll = this.$refs.subTable[index].selection.length === item.children.length
-        if (isSubTableSelectAll) {
-          item.select = true
-        } else {
-          item.select = false
-        }
+        item.select = isSubTableSelectAll
+        await this.$nextTick()
+        this.isSelectAll = _checkSelectAll(this.tableData)
+
+        // function _checkSelectAll(array) {
+        //   return array.every(item => item.select)
+        // }
       },
 
       async selectAllSubTable() {
@@ -127,7 +140,20 @@ import Th from './../th'
       },
 
       async selectAllChange(value) {
-        if (!value) {
+        if (value) {
+          this.loadingInstance = Loading.service({ target: document.querySelector('.evan-table-container') })
+          const subTableArray = await this.getAllData()
+          this.tableData = this.tableData.map(item => {
+            const data = subTableArray.find(each => each.parentId === item.id)?.children
+            return {
+              ...item,
+              isLoaded: true,
+              select: true,
+              isExpand: true,
+              children: data || [],
+            }
+          })
+        } else {
           this.tableData = this.tableData.map(item => {
             return {
               ...item,
@@ -135,21 +161,13 @@ import Th from './../th'
               isExpand: false,
             }
           })
-          this.isSelectAll = false
-          return
         }
-        const subTableArray = await this.getAllData()
-        this.tableData = this.tableData.map(item => {
-          const data = subTableArray.find(each => each.parentId === item.id)?.children
-          return {
-            ...item,
-            isLoaded: true,
-            select: true,
-            isExpand: true,
-            children: data || [],
-          }
-        })
-        this.isSelectAll = true
+        this.isSelectAll = value
+        await this.$nextTick()
+        if (this.loadingInstance) {
+          this.loadingInstance.close()
+          this.loadingInstance = null
+        }
       },
 
       async getAllData() {
@@ -190,9 +208,9 @@ import Th from './../th'
         }
         this.isSelectAll = _checkSelectAll(this.tableData)
 
-        function _checkSelectAll(array) {
-          return array.every(item => item.select)
-        }
+        // function _checkSelectAll(array) {
+        //   return array.every(item => item.select)
+        // }
       },
 
       async selectCurrentAllSubTableRow(subTableIndex) {
@@ -241,6 +259,21 @@ import Th from './../th'
 </script>
 
 <style lang="less" scoped>
+.sub-table-container {
+  position: relative;
+  margin-left: 50px;
+}
+
+.block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 46px;
+  width: 50px;
+  background: #f7f7f7;
+  z-index: 2;
+}
+
 .table {
     display: flex;
     flex-direction: column;
@@ -256,5 +289,14 @@ import Th from './../th'
         background-color: #f7f7f7;
         height: 42px;
     }
+}
+
+</style>
+
+<style lang="less" scoped>
+::v-deep .table-header-sub-table {
+  th {
+    background: #f7f7f7;
+  }
 }
 </style>
